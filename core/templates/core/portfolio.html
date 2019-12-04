@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<section id="coaching">
+  {% for portafolio in portafolios %}
+    {% if forloop.counter|divisibleby:2 == 0 %}
+      <section class="left">
+    {% endif %}
+    {% if forloop.counter|divisibleby:2 != 0 %}
+      <section class="right">
+    {% endif %}
+        
+        <h2>{{portafolio.proyecto}}</h2>
+        <p class="subtitulo">Creado: {{portafolio.fecha_crea}}</p>
+        <hr>
+        <p>{{portafolio.descripcion}}</p>
+        <img src="{% static 'core/img/rescate.jpg' %}" alt="Perro Negro">
+                  
+      </section>
+    {% endfor %}
+
+  </section>
+{% endblock %}

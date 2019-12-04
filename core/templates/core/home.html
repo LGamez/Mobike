@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+  <section id="main"></section>
+  <footer>
+    <address>
+      + 56 9 98765431
+    </address>
+    <section id="slogan">
+      <p>Rescate y adopción de perros callejeros </p>
+    </section>
+    <section id="social">
+      <ul>
+        <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        <li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+        <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+      </ul>
+    </section>
+  </footer>
+  <section id="coaching">
+    <section class="left">
+      <h2>Rescate</h2>
+      <p class="subtitulo">Etapa Uno</p>
+      <hr>
+      <p>Rescatamos perros en situación de peligro y/o abandono. Los rehabilitamos y los preparamos para buscarles un hogar.
+      </p>
+      <img src="{% static 'core/img/rescate.jpg' %}" alt="Perro Negro">
+                
+    </section>
+    <section class="right">
+      <img src="{% static 'core/img/crowfunding.jpg' %}" alt="">
+      <h2>CROWDFUNDING</h2>
+      <p class="subtitulo">Financiamiento</p>
+      <hr>
+      <p>
+        Sigue nuestras redes sociales para informarte acerca de las diversas campañas y actividades que realizamos para obtener financiamiento para seguir ayudando.
+      </p>
+      <button type="button" name="button">CAMPAÑAS</button>
+    </section>
+  </section>
+{% endblock %}
