@@ -1,98 +1,180 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobike</title>
-    <link rel="stylesheet" href="css/estilos.css" />
+    <title>Registro de Adoptante - MisPerris</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/icons/favicon.ico'%}"
+    />
+    <!--===============================================================================================-->
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      type="text/css"
+      href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}"
     />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/animate/animate.css'%}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/animsition/css/animsition.min.css'%}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/select2/select2.min.css'%}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/daterangepicker/daterangepicker.css'%}"
+    />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}" />
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="{% static 'js/validate.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/flexboxgrid.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/estilos.css'%}" />
+    <script defer src="{% static 'js/jquery.flexslider.js'%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   </head>
-
-  <body>
-    <div id="wrapper">
-      <section id="top">
-        <section id="logo">
-          <a href="index.html">
-            <img class="imgLogo" src="img/logo.png" alt="Logo Mis Perris" />
-          </a>
-        </section>
-        <nav>
-          <ul class="navContMenu">
-            <li><a href="index.html">inicio</a></li>
-            <li><a href="#coach">servicios</a></li>
-            <li><a href="#eetcafe">informaciones</a></li>
-            <li><a href="#">contáctanos</a></li>
-          </ul>
-        </nav>
-      </section>
-      <section id="content">
-        <img
-          id="bikes"
-          class="imgLogo"
-          src="img/perro.png"
-          alt="Logo Mis Perris"
-        />
-        <section id="main"></section>
-        <footer>
-          <address>
-            + 56 9 98765431
-          </address>
-          <section id="slogan">
-            <p>Recorre y pasea por tu comuna con Mobike</p>
-          </section>
-          <section id="social">
-            <ul>
-              <li>
-                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              </li>
-              <li>
-                <a href=""
-                  ><i class="fa fa-google-plus" aria-hidden="true"></i
-                ></a>
-              </li>
-              <li>
-                <a href=""
-                  ><i class="fa fa-instagram" aria-hidden="true"></i
-                ></a>
-              </li>
-              <li>
-                <a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a>
-              </li>
-            </ul>
-          </section>
-        </footer>
-        <section id="coaching">
-          <section class="left">
-            <h2>Rescate</h2>
-            <p class="subtitulo">Etapa Uno</p>
-            <hr />
-            <p>
-              Rescatamos perros en situación de peligro y/o abandono. Los
-              rehabilitamos y los preparamos para buscarles un hogar.
-            </p>
-            <img src="img/rescate.jpg" alt="Perro Negro" />
-          </section>
-          <section class="right">
-            <img src="img/crowfunding.jpg" alt="" />
-            <h2>CROWDFUNDING</h2>
-            <p class="subtitulo">Financiamiento</p>
-            <hr />
-            <p>
-              Sigue nuestras redes sociales para informarte acerca de las
-              diversas campañas y actividades que realizamos para obtener
-              financiamiento para seguir ayudando.
-            </p>
-            <button type="button" name="button">CAMPAÑAS</button>
-          </section>
-        </section>
-
-        <footer id="credits">
-          <p>Desarrollo Web y Mobile</p>
-        </footer>
-      </section>
+  <body style="background: #85d4b7;">
+    <div class="container3">
+      <div class="row start-sm center-xs">
+        <div class="col-sm-5 col-dm-5 col-xs-12 center-xs">
+          <div class="box">
+            <a id="menu" href="/home/"><img id="logo" alt=""/></a>
+          </div>
+        </div>
+        <div class="col-sm-1 col-dm-5  col-xs-12">
+          <div class="box bordes">
+            <a id="menu" href="/home/">inicio</a>
+          </div>
+        </div>
+        <div class="col-sm-1 col-dm-5 col-xs-12">
+          <div class="box bordes">
+            <a id="menu" href="#">quienes somos</a>
+          </div>
+        </div>
+        <div class="col-sm-1 col-dm-5 col-xs-12">
+          <div class="box bordes">
+            <a id="menu" href="#">servicios</a>
+          </div>
+        </div>
+        <div class="col-sm-1 col-dm-5 col-xs-12">
+          <div class="box bordes">
+            <a id="menu" href="#">contáctanos</a>
+          </div>
+        </div>
+        <div class="col-sm-1 col-dm-5 col-xs-12">
+          <div class="box bordes">
+            <a id="menu" href="/home/contacto/">formulario</a>
+          </div>
+        </div>
+        <div class="col-sm-1 col-dm-5 col-xs-12">
+          <div class="box bordes">
+            <a id="menu" href="/home/buscador/">buscar tu mascota</a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="container-contact100">
+      <div class="wrap-contact100">
+        {% block content %}
+        <form method="POST" class="contact100-form validate-form">
+          {% csrf_token %}
+          <span class="contact100-form-title">
+            ¡Adopta a tu mascota!
+          </span>
+          {{ form.as_p }} {% if messages %} {% for message in messages %} {{
+          message }} {% endfor %} {% endif %} {{foto}}
+          <div class="container-contact100-form-btn">
+            <div class="wrap-contact100-form-btn">
+              <div class="contact100-form-bgbtn"></div>
+              <button class="contact100-form-btn" type="submit">Guardar</button>
+            </div>
+          </div>
+        </form>
+        {% endblock %}
+      </div>
+    </div>
+
+    <div
+      class="container4"
+      style="background-color: #e6e6e6;margin-top: 90px;color: #b5b6b7;"
+    >
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-dm-12 col-lg-12">
+          Desarrollo Web y Mobile
+        </div>
+      </div>
+    </div>
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/animsition/js/animsition.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/bootstrap/js/popper.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/select2/select2.min.js'%}"></script>
+    <script>
+      $(".selection-2").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $("#dropDownSelect1")
+      });
+    </script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/daterangepicker/moment.min.js'%}"></script>
+    <script src="{% static 'vendor/daterangepicker/daterangepicker.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'vendor/countdowntime/countdowntime.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'js/main.js'%}"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-23581568-13");
+      console.log("TEST");
+    </script>
   </body>
 </html>

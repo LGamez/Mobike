@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Mantenedor</title>
+ <link rel="stylesheet" href="{% static 'css/style.css'%}">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+				<div class="table-title">
+						<div class="row">
+							<div class="col-sm-6">
+								<a class="btn btn-success" href="/login/">Cerrar sesión</a>
+							</div>
+						</div>
+					</div>
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+						<h2>Mantenedor <b>Perros Rescatados</b></h2>
+					</div>
+                </div>
+			</div>
+			
+			
+        </div>
+    </div>
+
+
+	<!-- Edit Modal HTML -->
+	<div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+                {% block content %}					
+					<form action="/modificar/" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+							<div class="modal-header">						
+								<h4 class="modal-title">Modificar Perro</h4>
+								<input type="hidden" class="form-control" name="codigo" value="{{codigo}}">
+							</div>
+							<div class="modal-body">					
+								<div class="form-group">
+									<label>Nombre</label>
+									<input type="text" class="form-control" name="nombre" value="{{nombre}}">
+								</div>
+								<div class="form-group">
+									<label>Raza Predominante</label>
+									<input type="text" class="form-control" name="raza" value="{{raza}}" required>
+								</div>
+								<div class="form-group">
+									<label>Descripción</label>
+									<textarea class="form-control" name="descripcion" required>{{descripcion}}</textarea>
+								</div>
+								<div class="form-group">
+									<label>Estado</label>
+									<select class="form-control" name="estado" required>
+											<option value="{{estado}}">{{estado}}</option>
+											<option value="Rescatado">Rescatado</option>
+											<option value="Disponible">Disponible</option>
+											<option value="Adoptado">Adoptado</option>    
+									</select>       
+		   
+								</div>	
+								<div class="form-group">
+									<label>Fotografía</label>
+									<input name="foto" type="file" value="/media/{{foto}}" required>
+									<h5>Actualmente: {{foto}}</h5>
+								</div>				
+							</div>
+							<div class="modal-footer">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+								<input type="submit" class="btn btn-success" value="Modificar">
+							</div>
+						</form>
+                {% endblock %}
+
+			</div>
+		</div>
+    </div>
+    
+</body>
+</html>                                		                            

@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script type="text/javascript" src="{% static 'js/validate.js'%}"></script>
+        <link rel="stylesheet" href="{% static 'css/flexboxgrid.min.css'%}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css'%}">
+        <script defer src="{% static 'js/jquery.flexslider.js'%}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    </head>
+    <body>
+            <div class="container3">
+                    <div class="row start-sm center-xs">
+                        <div class="col-sm-5 col-dm-5 col-xs-12 center-xs">
+                            <div class="box"> 
+                                    <a id="menu" href="MisPerris.html"><img id="logo" src="{% static 'img/logo.png'%}" alt="" /></a>  
+                            </div>                 
+                        </div>
+                        <div class="col-sm-1 col-dm-5  col-xs-12">
+                            <div class="box bordes"> 
+                                <a id="menu" href="MisPerris.html" >inicio</a>   
+                            </div>                 
+                        </div>
+                        <div class="col-sm-1 col-dm-5 col-xs-12">
+                            <div class="box bordes"> 
+                                <a id="menu" href="#">quienes somos</a>   
+                            </div>                 
+                        </div>
+                        <div class="col-sm-1 col-dm-5 col-xs-12">
+                            <div class="box bordes"> 
+                                <a id="menu" href="#">servicios</a>   
+                            </div>                 
+                        </div>
+                        <div class="col-sm-1 col-dm-5 col-xs-12">
+                            <div class="box bordes"> 
+                                <a id="menu" href="#">contáctanos</a>   
+                            </div>                 
+                        </div>
+                        <div class="col-sm-1 col-dm-5 col-xs-12">
+                            <div class="box bordes"> 
+                                <a id="menu" href="form.html">registrarse</a>   
+                            </div>                 
+                        </div>
+                    </div>
+                </div>
+		        <div class="row start-xs start-sm">
+                        <div class="col-sm-6 col-xs-14">
+                                {% block content %}
+                                <h1>New post</h1>
+                                <form method="POST" class="post-form">{% csrf_token %}
+                                    {{ form.as_p }}
+                                    {{label.label_tag}}
+                                    <button type="submit" class="button1" >Save</button>
+                                </form>
+                                 {% endblock %}
+                                <div class="row center-xs start-sm">
+                                        <div class="col-xs-12 col-sm-12">
+                                                <h3>Rellena el fomulario para adoptar a tu mascota!</h3>
+                                                <p>Completa los datos que la Fundación necesita recopilar del postulante:</p>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12">
+                                        <label for="usuario" id="correo">Email:</label>
+                                        <input id="correo" class="campos email" value="@" type="texto" name="txtemail" placeholder=" Correo Electronico" size="40" minlength="12" maxlength="40" onKeyUp="validarEmail(this)" required>*
+                                    </div> 
+                                    <div class="col-xs-12 col-sm-12">
+                                                <label for="usuario" id="run">RUN:</label>
+                                                <input onKeyPress="return soloK(event);" class="campos run" type="text" name="txtrun" value="11.111.111-1" placeholder=" RUN" size="20" minlength="7" maxlength="10" paterrn="[0-9]{2,4}" required>*
+                                    </div>         
+                                    <div class="col-xs-12 col-sm-12">
+                                        <label for="usuario" id="nombres">Nombre: </label>
+                                        <input onKeyPress="return soloLetras(event);" id="nombre" class="campos nombres"  type="text" placeholder=" Nombres" size="30" minlength="5" maxlength="35" pattern=[a-zA-Z] required >*
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <label for="usuario" id="nombres">Apellido:</label>
+                                        <input onKeyPress="return soloLetras(event);" id="nombre" class="campos nombres"  type="text" placeholder=" Apellidos" size="30" minlength="5" maxlength="35" pattern=[a-zA-Z] required >*
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <label for="usuario" id="fechanac">Fecha Nacimiento: </label>
+                                        <input id="fecha" class="campos fecha" value="01/01/2019" placeholder="Fecha de Nacimiento" required>*
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <label for="usuario" id="telcontacto">Telefono contacto: </label>
+                                        <input onKeyPress="return SoloNumeros(event);" nombre="telefono" class="campos telefono"  type="text" placeholder="Telefono de Contacto" size="20">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                            <label for="usuario" id="region">Región: </label>
+                                            <select id="selectregion" class="region" name="menuRegion" required>*
+                                              <option value="0" >Seleccione</option> 
+                                              <option value="1" >Arica y Parinacota</option>
+                                              <option value="2" >Antofagasta</option>
+                                              <option value="3" >Atacama</option>
+                                              <option value="4" >Coquimbo</option>
+                                              <option value="5" >Valparaiso</option>
+                                              <option value="6" >Maule</option>
+                                              <option value="7" >Bio Bio</option>
+                                              <option value="8" >Araucania</option>
+                                              <option value="9" >De Los Rios</option>
+                                              <option value="10" >Aisen</option>
+                                              <option value="11" >Magallanes y Antartica Chilena</option>
+                                              <option value="12" >Metropolitana</option>
+                                              <option value="13" >Ñuble</option>
+                                            </select>*
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                            <label for="usuario" id="ciudad">Ciudad: </label>
+                                            <select id="selectciudad" class="ciudad" name="menuCiudad" required>*
+                                              <option value="0" >Seleccione</option> 
+                                              <option value="1" >Santiago de Chile</option>
+                                              <option value="2" >Iquique</option>
+                                              <option value="3" >Valdivia</option>
+                                              <option value="4" >Concepción</option>
+                                              <option value="5" >Temuco</option>
+                                              <option value="6" >La Serena</option>
+                                              <option value="7" >Puerto Montt</option>
+                                              <option value="8" >Chillán</option>
+                                              <option value="9" >Rancagua</option>
+                                              <option value="10" >Punta Arenas</option>
+                                              <option value="11" >Talca</option>
+                                              <option value="12" >Viña del Mar</option>
+                                              <option value="13" >Arica</option>
+                                              <option value="14" >Calama</option>
+                                              <option value="15" >Copiapó</option>
+                                              <option value="16" >Osorno</option>
+                                              <option value="17" >Coyhaique</option>
+                                              <option value="18" >Curicó</option>
+                                              <option value="19" >Antofagasta</option>
+                                              <option value="20" >Los Angeles</option>
+                                              <option value="21" >Ovalle</option>
+                                              <option value="22" >San Pedro de Atacama</option>
+                                              <option value="23" >Pucón</option>
+                                              <option value="24" >Castro</option>
+                                              <option value="25" >La Ligua</option>
+                                              <option value="26" >San Fernando</option>
+                                              <option value="27" >Puerto Varas</option>
+                                              <option value="28" >Talcahuano</option>
+                                              <option value="29" >Valparaiso</option>
+                                              <option value="30" >Quilpué</option>
+                                              <option value="31" >Melipilla</option>
+                                              <option value="32" >Quillota</option>
+                                              <option value="33" >San Felipe</option>
+                                              <option value="34" >Angol</option>
+                                              <option value="35" >Cauquenes</option>
+                                              <option value="36" >Villa Rica</option>
+                                              <option value="37" >Linares</option>
+                                              <option value="38" >Illapel</option>
+                                              <option value="39" >Concón</option>
+                                              <option value="40" >Constitución</option>
+                                              <option value="42" >San Bernardo</option>
+                                              <option value="43" >San Antonio</option>
+                                              <option value="44" >Coronel</option>
+                                              <option value="45" >Pichilemu</option>
+                                              <option value="46" >Santa Cruz</option>
+                                              <option value="47" >Vallenar</option>
+                                              <option value="48" >Cañete</option>
+                                              <option value="49" >Yumbel</option>
+                                            </select>*
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                            <label for="usuario" id="vivienda">Tipo de Vivienda: </label>
+                                            <select id="selectvivienda" class="vivienda" name="menuVivienda" required>
+                                                <option value="0"> Seleccione</option>
+                                                <option value="1"> Casa con patio Grande</option>
+                                                <option value="2"> Casa con patio Pequeño</option>
+                                                <option value="3"> Casa sin patio</option>
+                                                <option value="4"> Departamento</option>
+                                            </select>*
+                                    </div>
+                                    <p>(*)Campos obligatorios.</p>
+                                    <div class="col-xs-12 col-sm-12">               
+                                        <input onclick="ValidarDatos()" type="button" class="button1" value="Registrar formulario">
+                                    </div>
+                                </div>
+                            <div class="col-sm-6">
+                                    <img id="perrito1" src="{% static 'img/Perro.png'%}" alt=""/>
+                            </div>
+                        </div>
+
+
+        <div class="container4" style="background-color: #e6e6e6;margin-top: 90px;color: #b5b6b7;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-dm-12 col-lg-12">
+                    Desarrollo Web y Mobile
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

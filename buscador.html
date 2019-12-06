@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Registro de Adoptante - MisPerris</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico'%}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'js/validate.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/flexboxgrid.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css'%}">
+    <script defer src="{% static 'js/jquery.flexslider.js'%}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	
+</head>
+<body style="background: #85d4b7;">
+	<div class="container3">
+			<div class="row start-lg start-md start-sm center-xs">
+					<div class="col-sm-10 col-dm-12 col-xs-6">
+						<div class="box"> 
+							<a id="menu" href="/home/"><h2>Bienvenido  <b> </b></h2></a>   
+						</div>                 
+					</div>
+					<div class="col-sm-2 col-dm-12  col-xs-6">
+						<div class="box">   
+							<a class="btn btn-success" href="/login/">Cerrar sesión</a>
+						</div>                 
+					 </div>
+				</div>
+				<br>
+		<div class="row start-sm center-xs">
+			<div class="col-sm-5 col-dm-5 col-xs-12 center-xs">
+				<div class="box"> 
+						<a id="menu" href="/home/"><img id="logo" src="{% static 'img/logo.png'%}" alt="" /></a>  
+				</div>                 
+			</div>
+			<div class="col-sm-1 col-dm-5  col-xs-12">
+				<div class="box bordes"> 
+					<a id="menu" href="/home/" >inicio</a>   
+				</div>                 
+			</div>
+			<div class="col-sm-1 col-dm-5 col-xs-12">
+				<div class="box bordes"> 
+					<a id="menu" href="#">quienes somos</a>   
+				</div>                 
+			</div>
+			<div class="col-sm-1 col-dm-5 col-xs-12">
+				<div class="box bordes"> 
+					<a id="menu" href="#">servicios</a>   
+				</div>                 
+			</div>
+			<div class="col-sm-1 col-dm-5 col-xs-12">
+				<div class="box bordes"> 
+					<a id="menu" href="#">contáctanos</a>   
+				</div>                 
+			</div>
+			<div class="col-sm-1 col-dm-5 col-xs-12">
+				<div class="box bordes"> 
+					<a id="menu" href="/home/contacto/">formulario</a>   
+				</div>                 
+			</div>
+			<div class="col-sm-1 col-dm-5 col-xs-12">
+					<div class="box bordes"> 
+						<a id="menu" href="/home/buscador/">buscar tu mascota</a>   
+					</div>                 
+			</div>
+		</div>
+	</div>
+
+		<div class="container">
+				<div class="table-wrapper">
+					<div class="estado_perro">
+							<div class="col-sm-12">
+									<div class="buscador_conoce">
+										<div class="titulo_buscador">
+										<h2>Buscador de Estado de Perro</h2>
+									</div>
+
+									{% block buscar2 %}
+									<form method="POST" action="/buscar/">
+									{% csrf_token %}
+									<div class="estado_perro">
+											<label>Seleccione Estado del Perro:</label>
+												<select name="estadobuscar"  required>
+												  <option value="0">Seleccione...</option>
+												  <option value="Rescatado">Rescatado</option>
+												  <option value="Disponible">Disponible</option>
+												  <option value="Adoptado">Adoptado</option>    
+												</select>
+											<button class="btn btn-success" type="submit">Buscar</button>
+									</div>
+									</form>
+									{% endblock %}
+							</div>	
+					</div>
+				
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Raza Predominante</th>
+								<th>Descripción</th>
+								<th>Estado</th>
+								<th>Fotografía</th>
+							</tr>
+						</thead>
+						<tbody>
+								{% for instance in object_list %}
+								<tr>
+									<th>{{instance.nombre}}</th>
+									<th>{{instance.raza}}</th>
+									<th>{{instance.descripcion}}</th>
+									<th>{{instance.estado}}</th>
+									<th><img src="{{ instance.foto }}"></th>
+								</tr>	
+								{% endfor %}
+						</tbody>
+					</table>
+		
+					<!-- control del paginas y entradas -->
+					<div class="clearfix">
+						<div class="hint-text">Mostrando página <b>1</b> de <b>15</b> entradas</div>
+						<ul class="pagination">
+							<li class="page-item disabled"><a href="#">Página</a></li>
+							<li class="page-item active"><a href="#" class="page-link">1</a></li>
+							<li class="page-item"><a href="#" class="page-link">2</a></li>
+							<li class="page-item"><a href="#" class="page-link">3</a></li>
+							<li class="page-item"><a href="#" class="page-link">4</a></li>
+							<li class="page-item"><a href="#" class="page-link">5</a></li>
+							<li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container4">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-dm-12 col-lg-12">
+							Desarrollo Web y Mobile
+						</div>
+					</div>
+				</div>				
+    </body>
+</html>

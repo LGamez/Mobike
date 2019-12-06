@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mantenedor</title>
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// Activate tooltip
+			$('[data-toggle="tooltip"]').tooltip();
+			
+			// Select/Deselect checkboxes
+			var checkbox = $('table tbody input[type="checkbox"]');
+			$("#selectAll").click(function(){
+				if(this.checked){
+					checkbox.each(function(){
+						this.checked = true;                        
+					});
+				} else{
+					checkbox.each(function(){
+						this.checked = false;                        
+					});
+				} 
+			});
+			checkbox.click(function(){
+				if(!this.checked){
+					$("#selectAll").prop("checked", false);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Bienvenido  <b>{% if messages %}
+							{% for message in messages %}
+							{{ message }}
+							{% endfor %}
+							{% endif %}  </b></h2>
+						</div>
+						<div class="col-sm-6">
+							<a class="btn btn-success" href="/login/">Cerrar sesión</a>
+						</div>
+					</div>
+				</div>
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-6">
+							<h2>Mantenedor <b>Perros Rescatados</b></h2>
+						</div>
+						<div class="col-sm-6">
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Perro</span></a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="estado_perro">
+					<div class="col-sm-12">
+						{% block buscar %}
+						<form method="POST" action="/mantenedor/buscar/">
+							{% csrf_token %}
+							<div class="estado_perro">
+								<label>Seleccione Estado del Perro:</label>
+								<select name="estadobuscar"  required>
+									<option value="0">Seleccione...</option>
+									<option value="Rescatado">Rescatado</option>
+									<option value="Disponible">Disponible</option>
+									<option value="Adoptado">Adoptado</option>    
+								</select>
+								<button class="btn btn-success" type="submit">Buscar</button>
+							</div>
+						</form>
+						{% endblock %}
+					</div>	
+				</div>
+				
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="selectAll">
+									<label for="selectAll"></label>
+								</span>
+							</th>
+							<th>Nombre</th>
+							<th>Raza Predominante</th>
+							<th>Descripción</th>
+							<th>Estado</th>
+							<th>Fotografía</th>
+							<th>Acción</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for instance in object_list %}
+						<tr>
+							<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox3" name="options[]" value="1">
+									<label for="checkbox3"></label>
+								</span>
+							</td>
+							<th>{{instance.nombre}}</th>
+							<th>{{instance.raza}}</th>
+							<th>{{instance.descripcion}}</th>
+							<th>{{instance.estado}}</th>
+							<th><img src="{{ instance.foto.url }}"></th>
+							<th style="display:none;">{{instance.codigo}}</th>
+							<td>
+								
+								{% block modificar %}
+								<form action="/consultar/" method="POST">
+									{% csrf_token %}
+									<input type='hidden' value="{{instance.codigo}}" name="codigo"/>
+									<button type="submit" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modificar">&#xE254;</i></a>
+									</form>
+									{% endblock %}
+									
+									
+									{% block eliminar %}
+									<form action="/eliminar/" method="POST">
+										{% csrf_token %}
+										<input type='hidden' value="{{instance.codigo}}" name="codigo"/>
+										<button type="submit" class="delete"><i class="material-icons" data-toggle="tooltip" title="Eliminar Registro">&#xE872;</i></button>
+									</form>
+									{% endblock %}
+								</td>
+							</tr>	
+							{% endfor %}
+						</tbody>
+					</table>
+					
+					<!-- control del paginas y entradas -->
+					<div class="clearfix">
+						<div class="hint-text">Mostrando página <b>1</b> de <b>15</b> entradas</div>
+						<ul class="pagination">
+							<li class="page-item disabled"><a href="#">Página</a></li>
+							<li class="page-item active"><a href="#" class="page-link">1</a></li>
+							<li class="page-item"><a href="#" class="page-link">2</a></li>
+							<li class="page-item"><a href="#" class="page-link">3</a></li>
+							<li class="page-item"><a href="#" class="page-link">4</a></li>
+							<li class="page-item"><a href="#" class="page-link">5</a></li>
+							<li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- Edit Modal HTML -->
+			<div id="addEmployeeModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						{% block content %}					
+						<form action="/agregar/" method="POST" enctype="multipart/form-data" id="formagregar">
+							{% csrf_token %}
+							<div class="modal-header">						
+								<h4 class="modal-title">Agregar un Nuevo Perro</h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">					
+								<div class="form-group">
+									<label>Nombre</label>
+									<input type="text" class="form-control" name="nombre" required>
+								</div>
+								<div class="form-group">
+									<label>Raza Predominante</label>
+									<input type="text" class="form-control" name="raza" required>
+								</div>
+								<div class="form-group">
+									<label>Descripción</label>
+									<textarea class="form-control" name="descripcion" required></textarea>
+								</div>
+								<div class="form-group">
+									<label>Estado</label>
+									<select class="form-control" name="estado" required>
+										<option value=""></option>
+										<option value="Rescatado">Rescatado</option>
+										<option value="Disponible">Disponible</option>
+										<option value="Adoptado">Adoptado</option>    
+									</select>       
+									
+								</div>	
+								<div class="form-group">
+									<label>Fotografía</label>
+									<input name="foto" type="file" required>
+								</div>				
+							</div>
+							<div class="modal-footer">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+								<input type="submit" class="btn btn-success" value="Agregar">
+							</div>
+						</form>
+						{% endblock %}
+						
+					</div>
+				</div>
+			</div>
+			
+		</body>
+		</html>                                		                            
